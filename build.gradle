@@ -14,16 +14,16 @@ plugins {
 	id "com.github.samueltbrown.cucumber" version "0.8"
 	id "com.energizedwork.idea-project-components" version "1.2"
 	id "com.energizedwork.idea-base" version "1.2"
-	id "com.energizedwork.webdriver-binaries" version "1.0"
+	id "com.energizedwork.webdriver-binaries" version "1.4"
 }
 
 ext {
-	groovyVersion = '2.4.12'
+	groovyVersion = '2.5.5'
 	gebVersion = '2.3'
-	seleniumVersion = '3.6.0'
-	cucumberJvmVersion = '1.2.2'
-	chromeDriverVersion = '2.32'
-	geckoDriverVersion = '0.18.0'
+	seleniumVersion = '3.141.59'
+	cucumberJvmVersion = '1.2.5'
+	chromeDriverVersion = '2.45'
+	geckoDriverVersion = '0.23.0'
 }
 
 repositories {
@@ -55,13 +55,13 @@ webdriverBinaries {
 
 cucumber {
 	formats = [
-		'pretty', // prints nice format out to the console
-		'html:build/reports/cucumber', // html
-		'junit:build/cucumber.xml' // junit format for integration with CI tool etc
+			'pretty', // prints nice format out to the console
+			'html:build/reports/cucumber', // html
+			'junit:build/cucumber.xml' // junit format for integration with CI tool etc
 	]
 	// src/cucumber/resources is included automatically
 	glueDirs = [
-		"classpath:io.jdev.geb.cucumber.steps.groovy.en"
+			"classpath:io.jdev.geb.cucumber.steps.groovy.en"
 	]
 }
 
@@ -80,8 +80,8 @@ configureGeckoDriverBinary {
 tasks.cucumber {
 	dependsOn configureChromeDriverBinary, configureGeckoDriverBinary
 	jvmOptions.systemProperties([
-		"geb.cucumber.step.packages": "pages",
-		"geb.env": System.getProperty("geb.env")
+			"geb.cucumber.step.packages": "pages",
+			"geb.env": System.getProperty("geb.env")
 	])
 }
 
